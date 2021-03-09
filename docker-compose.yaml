@@ -35,8 +35,6 @@ services:
     container_name: db
     restart: always
     tty: true
-    volumes:
-      - ./mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
@@ -45,6 +43,8 @@ services:
       - node-network
     ports:
       - "3306:3306"
+    volumes :
+      - "./node/scripts-db/table.sql:/docker-entrypoint-initdb.d/1.sql "  
     security_opt:
       - seccomp:unconfined  
 
