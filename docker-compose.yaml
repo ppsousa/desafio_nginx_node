@@ -10,7 +10,7 @@ services:
     networks:
       - node-network
     volumes:
-      - ./node:/usr/src/app
+      - ./node:/tmp/app
     tty: true
     ports:
       - "3000:3000"
@@ -30,7 +30,7 @@ services:
       - app
 
   db:
-    image: mysql:8
+    image: mysql:5.7
     command: --innodb-use-native-aio=0
     container_name: db
     restart: always
@@ -50,4 +50,4 @@ services:
 
 networks:
   node-network:
-    driver: bridge   
+    driver: bridge
