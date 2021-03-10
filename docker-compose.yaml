@@ -44,7 +44,7 @@ services:
     ports:
       - "3306:3306"
     volumes :
-      - ./scripts-db/table.sql:/docker-entrypoint-initdb.d/1.sql  
+      - ./scripts-db/table.sql:/docker-entrypoint-initdb.d/1.sql:ro  
     security_opt:
       - seccomp:unconfined  
 
