@@ -31,7 +31,7 @@ services:
 
   db:
     image: mysql:5.7
-    command: --innodb-use-native-aio=0
+    command: --innodb-use-native-aio=0 --init-file /data/application/init.sql
     container_name: db
     restart: always
     tty: true
@@ -44,7 +44,7 @@ services:
     ports:
       - "3306:3306"
     volumes :
-      - ./scripts-db/table.sql:/docker-entrypoint-initdb.d/1.sql:ro  
+      - ./scripts-db/table.sql:/data/application/init.sql
     security_opt:
       - seccomp:unconfined  
 
