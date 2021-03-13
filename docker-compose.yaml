@@ -30,9 +30,11 @@ services:
       - app
 
   db:
-    image: mysql:5.7
-    command: --innodb-use-native-aio=0 --init-file /data/application/init.sql
+    command: --innodb-use-native-aio=0
     container_name: db
+    build:
+      context: ./ 
+      dockerfile: Dockerfile.mysql
     restart: always
     tty: true
     environment:
@@ -43,10 +45,6 @@ services:
       - node-network
     ports:
       - "3306:3306"
-    volumes :
-      - ./scripts-db/table.sql:/data/application/init.sql
-    security_opt:
-      - seccomp:unconfined  
 
 networks:
   node-network:
